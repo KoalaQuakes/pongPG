@@ -6,12 +6,19 @@ def ball_animation():
     ball.y += ball_speed_y
     if ball.top <= 0 or ball.bottom >= screen_height:
         ball_speed_y *= -1
-    if ball.left <= 0 or ball.right >= screen_width:
+    if ball.left <= 0:
         ball_restart()
-    
+        print(point(1))
+    if ball.right >= screen_width:
+        ball_restart()
+        print(point(-1))
 
     if ball.colliderect(player) or ball.colliderect(opponent):
         ball_speed_x *= -1
+
+def point(point):
+    score = score + point
+    return score
 
 def player_animation():
     player.y += player_speed
@@ -52,6 +59,7 @@ opponent = pygame.Rect(10,screen_height/2 - 70, 10, 140)
 
 bg_color = pygame.Color('grey12')
 light_grey = (200,200,200)
+pink = pygame.Color('pink')
 
 ball_speed_x = 7 * random.choice((1,-1))
 ball_speed_y = 7 * random.choice((1,-1))
@@ -83,7 +91,7 @@ while True:
 
     # Visuals
     screen.fill(bg_color)
-    pygame.draw.rect(screen,light_grey, player)
+    pygame.draw.rect(screen,pink, player)
     pygame.draw.rect(screen,light_grey, opponent)
     pygame.draw.ellipse(screen, light_grey, ball)
     pygame.draw.aaline(screen,light_grey,(screen_width/2, 0),(screen_width/2,screen_height))
