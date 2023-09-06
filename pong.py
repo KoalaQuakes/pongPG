@@ -13,13 +13,11 @@ def ball_animation():
 
     if ball.left <= 0:
        player_score += 1
-       #ball_restart()
        score_time = pygame.time.get_ticks()
 
     if ball.right >= screen_width:
         opponent_score += 1
-        #ball_restart()
-        core_time = pygame.time.get_ticks()
+        score_time = pygame.time.get_ticks()
 
     if ball.colliderect(player) or ball.colliderect(opponent):
         ball_speed_x *= -1
@@ -54,8 +52,8 @@ def ball_restart():
     if current_time - score_time < 2100:
         ball_speed_x, ball_speed_y = 0,0
     else:
-        ball_speed_y *= 7 * random.choice((1, -1))
-        ball_speed_x *= 7 * random.choice((1, -1))
+        ball_speed_y = 7 * random.choice((1, -1))
+        ball_speed_x = 7 * random.choice((1, -1))
         score_time = None
     
 
@@ -123,7 +121,6 @@ while True:
     pygame.draw.ellipse(screen, light_grey, ball)
     pygame.draw.aaline(screen,light_grey, (screen_width/  2, 0),(screen_width / 2, screen_height))
 
-    
     if score_time:
         ball_restart()
 
