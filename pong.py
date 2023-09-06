@@ -49,7 +49,27 @@ def ball_restart():
     current_time = pygame.time.get_ticks()
     ball.center = (screen_width / 2, screen_height / 2)
 
-    if current_time - score_time < 2100:
+    if current_time - score_time < 700:
+        number_three = game_font.render("Get Ready!", False, light_grey)
+        screen.blit(number_three,(screen_width / 2 - 10, screen_height / 2 + 30))
+
+    if 700 < current_time - score_time < 1400:
+        number_three = game_font.render("3", False, light_grey)
+        screen.blit(number_three,(screen_width / 2 - 10, screen_height / 2 + 30))
+
+    if 1400 < current_time - score_time < 2100:
+        number_two = game_font.render("2", False, light_grey)
+        screen.blit(number_two,(screen_width / 2 - 10, screen_height / 2 + 30))
+
+    if 2100 < current_time - score_time < 2500:
+        number_one = game_font.render("1", False, light_grey)
+        screen.blit(number_one,(screen_width / 2 - 10, screen_height / 2 + 30))
+
+    if 2500 < current_time - score_time < 2800:
+        number_one = game_font.render("Go!", False, light_grey)
+        screen.blit(number_one,(screen_width / 2 - 10, screen_height / 2 + 30))
+
+    if current_time - score_time < 2800:
         ball_speed_x, ball_speed_y = 0,0
     else:
         ball_speed_y = 7 * random.choice((1, -1))
@@ -88,7 +108,7 @@ opponent_score = 0
 game_font = pygame.font.Font("freesansbold.ttf", 32)
 
 # Score Timer
-score_time = None
+score_time = True
 
 # Main Game Loop
 while True:
